@@ -5,16 +5,30 @@
 	    <header class="jumbotron ind  ">
 	       <h1 >به راهنما خوش امدید</h1>
 	       <div >
-	         <a class="btn btn-primary btn-large"href="/campground/new">ثبت مالکیت جدید</a>
+	         <a class="btn btn-primary btn-large"href="/rahnama/options">ثبت مالکیت جدید</a>
 
 	       </div>
 	 
 	    </header>
 
-	 <div class="row" >
+	 <div class="row">
+	    <%homes.forEach(function(home){%>
+           <div class="col-sm-6 col-lg-3">
+              <div class="thumbnail">
+              <h4 class="pull-right"><%=home.category%></h4>
+              <img src="<%=home.image%>">
+              <div class="text-center">
+                 <a class="btn btn-success" href="/rahnama/home/<%=home._id%>">مشخصات</a>
+              </div>
+              </div>
+           </div>
+
+	    <%});%>
 
 			
-	 <div>
+	 </div>
+
+	 
 </div>
 
 
