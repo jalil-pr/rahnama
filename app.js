@@ -1,6 +1,7 @@
 var express          =require("express"),
     mongoose         =require("mongoose"),
     home             =require("./models/home"),
+    shope            =require("./models/shope"),
     bodyParser       =require("body-parser"),
     seedDb           =require("./seedDb");
 
@@ -10,6 +11,7 @@ var express          =require("express"),
 var app=express();
 app.use(bodyParser.urlencoded({extended:true}));
 mongoose.connect("mongodb://localhost:27017/rahnama",{useNewUrlParser:true});
+//seedDb();
 
 
 app.set("view engine","ejs");
@@ -55,6 +57,23 @@ app.get("/rahnama/home/:id",function(req,res)
 	}) 
 
 });
+app.get("/rahnama/shope/:id",function(req,res)
+{
+	//find the home with the given id
+	shope.findById(req.params.id,function(err,foundShop)
+	{
+		if (err) {
+			console.log(err)
+		}
+		else
+		{
+			
+	        // send it to the show page
+	        res.render("posts/show_shop",{foundShop:foundShop});
+		}
+	}) 
+
+});
 //####### all homes##############
 app.get("/rahnama/homes",function(req,res)
 {
@@ -76,11 +95,24 @@ app.get("/rahnama/homes",function(req,res)
 
 	
 });
-
+// show all shops route
 app.get("/rahnama/shope",function(req,res)
 {
-	res.render("posts/shope");
+	//find all the shopes from database
+	shope.find({},function(err,allShopes)
+	{
+		if (err) {
+			console.log(err);
+		}
+		else
+		{
+			//send it to the show page
+	        res.render("posts/shope",{allShopes:allShopes});
+		}
 
+	});
+
+	
 });
 app.get("/rahnama/office",function(req,res)
 {
@@ -106,6 +138,7 @@ app.post("/rahnama/options",function(req,res)
 
 });
 
+
 app.get("/rahnama/login",function(req,res)
 {
 	res.render("auth/login");
@@ -115,14 +148,6 @@ app.get("/rahnama/register",function(req,res)
 	{
 		res.render("auth/register");
 	});
-
-
-
-
-
-
-
-
 
 
 

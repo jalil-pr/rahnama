@@ -1,0 +1,66 @@
+
+<%include ../partials/header %>
+   <div class="container">
+     <div class="row">
+       <div class="col-md-3">
+         <ul>
+           <li>1</li>
+           <li>2</li>
+           <li>3</li>
+           
+
+         </ul>
+       </div>
+       <div class="col-md-9">
+          <header class="jumbotron ind  ">
+            <div class="row">
+
+              
+                <div class="col-lg-6 col-sm-12 col-xs-12">
+                  <div class="pull-right"><p><h3>:موقعیت &nbsp; </h3><%=foundShop.location%></p></div>
+
+                </div>
+                <div class="col-lg-6 col-sm-12 col-xs-12">
+                  <div class="pull-right"><h4>نوع: &nbsp;   <%=foundShop.category%></h4></div>
+                  <div class="text-center"><h4>قیمت: &nbsp;   <%=foundShop.price%></h4></div>
+                  <div class="pull-right"><h4>تعداد اطاق: &nbsp;   <%=foundShop.number_of_rooms%></h4></div>
+                  <div class="text-center"><h4>تعداد منزل:&nbsp;    <%=foundShop.number_of_floors%></h4></div>
+                  <div class="pull-right"><h4>نمبر منزل:&nbsp;    <%=foundShop.floor_number%></h4></div>
+
+                  <div class="text-center"><h4>نمبر منزل:&nbsp;    <%=foundShop.floor_number%></h4>
+                  </div>
+                  <div class="pull-right">
+
+                    <h4>ولایت:&nbsp;    <%=foundShop.provence%></h4>
+                  </div>
+                  
+
+                </div>
+              
+
+            </div>
+            
+          </header>
+          <div class="well">
+            <h5 class="pull-right">:عکسها </h5>
+            <div class="row"s>
+              
+                 <div class="col-md-6 col-sm-12">
+                   <div class="thumbnail">
+                     
+                     <img src="<%=foundShop.image%>">
+
+                   </div>
+                
+                 </div>
+              
+            </div>
+
+
+          </div>
+       </div>
+
+
+     </div>
+   </div>
+<%include ../partials/footer %>
