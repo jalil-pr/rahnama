@@ -1,5 +1,36 @@
-<% include ../partials/header %>
-<h1>this page must show all the offices available</h1>
+
+<%include ../partials/header %>
+   <div class="container">
+     <div class="row">
+       <div class="col-md-3">
+         <ul>
+           <li>1</li>
+           <li>2</li>
+           <li>3</li>
+           <li>4</li>
+
+         </ul>
+       </div>
+       <div class="col-md-9">
+          
+              <%allOffices.forEach(function(office){%>
+    	           <div class="col-sm-6 col-lg-4">
+    	              <div class="thumbnail">
+    	              <h4 class="pull-right"><%=office.category%></h4>
+    	              <img src="<%=office.image%>">
+    	              <div class="text-center">
+    	                 <a class="btn btn-success" href="/rahnama/office/<%=office._id%>">مشخصات</a>
+    	              </div>
+    	              </div>;
+    	            </div>
+
+		          <%});%>
+
+            
+          
+       </div>
 
 
-<% include ../partials/footer %>
+     </div>
+   </div>
+<%include ../partials/footer %>

@@ -1,9 +1,11 @@
 var express          =require("express"),
     mongoose         =require("mongoose"),
     home             =require("./models/home"),
+    office           =require("./models/office"),
     shope            =require("./models/shope"),
     bodyParser       =require("body-parser"),
-    seedDb           =require("./seedDb");
+    fs               =require("fs"),
+    multer           =require("multer");
 
 
 
@@ -11,19 +13,19 @@ var express          =require("express"),
 var app=express();
 app.use(bodyParser.urlencoded({extended:true}));
 mongoose.connect("mongodb://localhost:27017/rahnama",{useNewUrlParser:true});
-//seedDb();
+// seedDb();
 
 
 app.set("view engine","ejs");
 app.use(express.static(__dirname+"/public"));
 
-app.get("/",function(req,res)
+app.get("/homes",function(req,res)
 {
 	home.find({},function(err,homes)
 	{
 		if(err)
 		{
-			console.log(err);
+			res.send("currently no home found! please come back latter");
 		}
 		else
 		{
@@ -33,14 +35,14 @@ app.get("/",function(req,res)
 	})
 });
 
-app.get("/rahnama",function(req,res)
+app.get("/",function(req,res)
 {
 	res.send("the swaping images here!")
 
 });
 //#########################home routes##########################
 //########show route ###########
-app.get("/rahnama/home/:id",function(req,res)
+app.get("/home/:id",function(req,res)
 {
 	//find the home with the given id
 	home.findById(req.params.id,function(err,foundItem)
@@ -57,7 +59,7 @@ app.get("/rahnama/home/:id",function(req,res)
 	}) 
 
 });
-app.get("/rahnama/shope/:id",function(req,res)
+app.get("/shope/:id",function(req,res)
 {
 	//find the home with the given id
 	shope.findById(req.params.id,function(err,foundShop)
@@ -75,7 +77,7 @@ app.get("/rahnama/shope/:id",function(req,res)
 
 });
 //####### all homes##############
-app.get("/rahnama/homes",function(req,res)
+app.get("/homes",function(req,res)
 {
 	//find all the homes from the database
 	home.find({},function(err,homes)
@@ -114,13 +116,27 @@ app.get("/rahnama/shope",function(req,res)
 
 	
 });
-app.get("/rahnama/office",function(req,res)
+app.get("/office",function(req,res)
 {
-	res.render("posts/office");
+	//find the offices
+	office.find({},function(err,allOffices)
+	{
+            if (err) {
+            	console.log(err)
+            }
+            else
+            {
+            	// render it to show page
+            	console.log(allOffices)
+	            res.render("posts/office",{allOffices:allOffices});
+
+            }
+			
+	})
 
 });
 // sending the options to user
-app.get("/rahnama/options",function(req,res)
+app.get("/options",function(req,res)
 {
 	res.render("posts/options");
 });
@@ -139,12 +155,12 @@ app.post("/rahnama/options",function(req,res)
 });
 
 
-app.get("/rahnama/login",function(req,res)
+app.get("/login",function(req,res)
 {
 	res.render("auth/login");
 });
 
-app.get("/rahnama/register",function(req,res)
+app.get("/register",function(req,res)
 	{
 		res.render("auth/register");
 	});
