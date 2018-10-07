@@ -10,7 +10,7 @@ var homeSchema=new mongoose.Schema({
 	location:String,
 	category:String,
 	price:Number,
-	image:String
+	images:[]
 	
 });
 module.exports=mongoose.model("Home",homeSchema);

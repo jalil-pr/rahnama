@@ -4,7 +4,7 @@ var express          =require("express"),
     office           =require("./models/office"),
     shope            =require("./models/shope"),
     bodyParser       =require("body-parser"),
-    fs               =require("fs"),
+    path             =require("path"),
     multer           =require("multer");
 
 
@@ -18,7 +18,30 @@ mongoose.connect("mongodb://localhost:27017/rahnama",{useNewUrlParser:true});
 
 app.set("view engine","ejs");
 app.use(express.static(__dirname+"/public"));
+let storage=multer.diskStorage({
+	destination:'./public/uploads',
+	filename:(req,file,cb)=>{
+		cb(null,file.fieldname+"-"+Date.now()+path.extname(file.originalname));
+	}
+});
+let upload=multer(
+{
+	storage:storage
+}).array('images');
 
+
+
+app.get("/",function(req,res)
+{
+	// res.send("the swaping images here!")
+	res.render("landing");
+
+});
+app.get("/rahnama",function(req,res)
+{
+	res.render("all");
+})
+//#########################home routes##########################
 app.get("/homes",function(req,res)
 {
 	home.find({},function(err,homes)
@@ -34,31 +57,74 @@ app.get("/homes",function(req,res)
 		
 	})
 });
-
-app.get("/",function(req,res)
+app.get("/homes/new",function(req,res)
 {
-	res.send("the swaping images here!")
+	res.render("forms/home");
+})
 
-});
-//#########################home routes##########################
-//########show route ###########
-app.get("/home/:id",function(req,res)
+app.post("/homes/new",(req,res)=>{
+	upload(req,res,(err)=>{
+		if(err)
+		{
+			console.log(err);
+		}
+		else
+		{
+			var nOfRoom=req.body.num_of_rooms;
+			var nOfFloors=req.body.num_of_floors;
+			var category=req.body.category;
+			var floorNo=req.body.floor_number;
+			var provence=req.body.provence;
+			var loc=req.body.location;
+			var price=req.body.price;
+
+		    var newHome=new home({
+		    	number_of_rooms:nOfRoom,
+				number_of_floors:nOfFloors,
+				floor_number:floorNo,
+				provence:provence,
+				location:loc,
+				category:category,
+				price:price
+		    });
+		    home.create(newHome,(err,createHome)=>{
+		    	if(err)
+		    	{
+		    		console.log(err);
+
+		    	}else{
+		    		req.files.forEach((file)=>{
+		    			createHome.images.push(file.filename);
+
+		    		});
+		    		createHome.save();
+		    	}
+		    });
+		res.redirect("/homes");
+		}
+	})
+})
+
+//####show route #######
+app.get("/homes/:id",(req,res)=>
 {
 	//find the home with the given id
-	home.findById(req.params.id,function(err,foundItem)
+	home.findById(req.params.id,(err,foundHome)=>
 	{
 		if (err) {
 			console.log(err)
+			res.send("Oops the home could not be found ")
 		}
 		else
 		{
 			
 	        // send it to the show page
-	        res.render("posts/show",{foundItem:foundItem});
+	        res.render("posts/show",{foundHome:foundHome});
 		}
 	}) 
 
 });
+
 app.get("/shope/:id",function(req,res)
 {
 	//find the home with the given id
@@ -76,29 +142,8 @@ app.get("/shope/:id",function(req,res)
 	}) 
 
 });
-//####### all homes##############
-app.get("/homes",function(req,res)
-{
-	//find all the homes from the database
-	home.find({},function(err,homes)
-	{
-		if(err)
-		{
-			console.log(err);
-		}
-		else
-		{
-
-			//send it to the homes page
-	        res.render("posts/home",{homes:homes});
-		}
-		
-	})
-
-	
-});
 // show all shops route
-app.get("/rahnama/shope",function(req,res)
+app.get("/shopes",function(req,res)
 {
 	//find all the shopes from database
 	shope.find({},function(err,allShopes)
@@ -140,7 +185,7 @@ app.get("/options",function(req,res)
 {
 	res.render("posts/options");
 });
-app.post("/rahnama/options",function(req,res)
+app.post("/options",function(req,res)
 {
 	var propertyType=req.body.propertyType;
 	if(propertyType.trim()==='home')

@@ -4,10 +4,10 @@
 	<div class="form-center">
 	<h4>لطفا مشخصات خانه خود را در زیر درج نمایید.</h4>
 
-	  <form action="/rahnama/property/home" method="POST">
+	  <form action="/homes/new" method="POST" enctype="multipart/form-data">
 	    <div class="form-group">
 	    
-	        <input list="nums" class="form-control" type="number" name="num_of_rooms" placeholder="تعداد اطاق">
+	        <input list="nums" class="form-control" type="number" name="num_of_rooms" placeholder="تعداد اطاق"/>
 	        <datalist id="nums">
 	           <option value="2">	
 	           <option value="3">	
@@ -26,16 +26,16 @@
 	           <option value="16">	
 
 	        </datalist>
-ff6
+
 	    </div>
 	    <div class="form-group">
 	    
-	        <input list="nums" class="form-control" type="number" name="num_of_floors" placeholder="تعداد منزل">
+	        <input list="nums" class="form-control" type="number" name="num_of_floors" placeholder="تعداد منزل"/>
 	      
 	    </div>
 	    <div class="form-group">
 	    
-	        <input list="the_numbers" class="form-control" type="text" name="floor_number" placeholder="منزلی فروشی/کرایی">
+	        <input list="the_numbers" class="form-control" type="text" name="floor_number" placeholder="منزلی فروشی/کرایی"/>
 	          <datalist id="the_numbers">
 	           <option value="اول">	
 	           <option value="دوم">	
@@ -47,6 +47,7 @@ ff6
 	           <option value="هشتم">	
 	           <option value="نهم">	
 	           <option value="دهم">	
+	           <option value="همه">	
 	           
 	          
 	        </datalist>
@@ -57,20 +58,18 @@ ff6
 	    <!-- category of the property -->
 	    <div class="form-group">
 	    
-	        <input list="categoryـlist" class="form-control" type="text" name="category" placeholder="کرایی/گروی؟">
+	        <input list="categoryـlist" class="form-control" type="text" name="category" placeholder="کرایی/گروی؟"/>
 	        <datalist id="categoryـlist">
 	        	<option value="کرایی">
 	        	<option value="گروی">
+	        	<option value="فروشی">
 	        	
 	        </datalist>
-
-	      
-
 	    </div>
 	    <!-- price -->
 	    <div class="form-group">
 	    
-	        <input class="form-control" type="number" name="price" placeholder="قیمت بر اساس افغانی">
+	        <input class="form-control" type="number" name="price" placeholder="قیمت بر اساس افغانی"/>
 	      
 	    </div>
 	    <!-- provence -->
@@ -91,7 +90,7 @@ ff6
 	    <!-- location field -->
 	    <div class="form-group">
 	    
-	        <input class="form-control" type="text" maxlength="100" name="category" placeholder="موقعیت">
+	        <input class="form-control" type="text" maxlength="100" name="location" placeholder="موقعیت"/>
 	        
 	  
 	    </div>
@@ -99,12 +98,12 @@ ff6
 	    <div class="choose_image_div">
 
 		    <label for="files" class="btn">انتخاب عکس</label>
-		    <input id="files" style="visibility:hidden;" type="file" accept="image/x-png,image/gif,image/jpeg">
+		    <input id="files" name="images"style="visibility:hidden;" type="file" accept="image/x-png,image/gif,image/jpeg"multiple>
 		    <small>لطفا سه عکس انتخاب کنید </small>
 		</div>
 	    
 	    <div class="form-group">
-	        <input class="btn btn-success btn_pading" type="submit" value="ادامه">
+	        <input class="btn btn-success btn_pading" type="submit" value="ادامه"/>
 	    </div>
 
 

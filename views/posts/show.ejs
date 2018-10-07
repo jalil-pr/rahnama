@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <%include ../partials/header %>
    <div class="container">
      <div class="row">
@@ -12,26 +12,31 @@
          </ul>
        </div>
        <div class="col-md-9">
-          <header class="jumbotron ind  ">
+          <header class="jumbotron">
             <div class="row">
 
               
-                <div class="col-lg-6 col-sm-12 col-xs-12">
-                  <div class="pull-right"><p><h3>:موقعیت &nbsp; </h3><%=foundItem.location%></p></div>
-
-                </div>
-                <div class="col-lg-6 col-sm-12 col-xs-12">
-                  <div class="pull-right"><h4>نوع: &nbsp;   <%=foundItem.category%></h4></div>
-                  <div class="text-center"><h4>قیمت: &nbsp;   <%=foundItem.price%></h4></div>
-                  <div class="pull-right"><h4>تعداد اطاق: &nbsp;   <%=foundItem.number_of_rooms%></h4></div>
-                  <div class="text-center"><h4>تعداد منزل:&nbsp;    <%=foundItem.number_of_floors%></h4></div>
-                  <div class="pull-right"><h4>نمبر منزل:&nbsp;    <%=foundItem.floor_number%></h4></div>
-
-                  <div class="text-center"><h4>نمبر منزل:&nbsp;    <%=foundItem.floor_number%></h4>
+                <div class="col-lg-6 col-sm-12">
+                  <div class="pull-right"><h3>موقعیت: &nbsp; </h3>
+                      <p><%=foundHome.location%></p>
                   </div>
-                  <div class="pull-right">
+                </div>
 
-                    <h4>ولایت:&nbsp;    <%=foundItem.provence%></h4>
+                <div class="col-lg-6 col-sm-12">
+                  <div class="pull-right"><h4>نوع: &nbsp;   <%=foundHome.category%></h4></div>
+
+                  <div class="text-center"><h4>قیمت: &nbsp;    
+                       <%=foundHome.price%></h4>
+                  </div>
+                  <div class="pull-right"><h4>تعداد اطاق:
+                       <%=foundHome.number_of_rooms%></h4>
+                  </div>
+                  <div class="text-center"><h4>تعداد منزل:
+                       <%=foundHome.number_of_floors%></h4>
+                  </div>
+                  <div class="pull-right"><h4>نمبر منزل:    <%=foundHome.floor_number%></h4></div>
+                  <div class="text-center">
+                    <h4>ولایت:&nbsp;    <%=foundHome.provence%></h4>
                   </div>
                   
 
@@ -43,18 +48,16 @@
           </header>
           <div class="well">
             <h5 class="pull-right">:عکسها </h5>
-            <div class="row"s>
-              <%for(var i=0;i<5;i++){%>
+            <div class="row">
+              <%foundHome.images.forEach((image)=>{%>
                  <div class="col-md-6 col-sm-12">
                    <div class="thumbnail">
-                     
-                     <img src="https://www.w3schools.com/css/paris.jpg">
-
+                     <img src="/uploads/<%=image%>">
                    </div>
                 
                  </div>
 
-              <%}%>
+              <%})%>
               
             </div>
 
