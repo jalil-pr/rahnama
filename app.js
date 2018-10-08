@@ -4,7 +4,11 @@ var express          =require("express"),
     office           =require("./models/office"),
     shope            =require("./models/shope"),
     bodyParser       =require("body-parser"),
+    User             =require("./models/user"),
+    Cares            =require("./models/cares"),
     path             =require("path"),
+    passport         =require("passport"),
+    localStrategy    =require("passport-local"),
     multer           =require("multer");
 
 
@@ -13,15 +17,19 @@ var express          =require("express"),
 var app=express();
 app.use(bodyParser.urlencoded({extended:true}));
 mongoose.connect("mongodb://localhost:27017/rahnama",{useNewUrlParser:true});
-// seedDb();
 //        PASSPORT STAFFFF
 app.use(require('express-session')({
 	secret:"Jalil Haidari is the best programmer in the world",
 	resave:false,
 	saveUninitialized:false
-}))
+}));
+
+
 app.use(passport.initialize());
 app.use(passport.session());
+passport.use(new localStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 app.set("view engine","ejs");
 app.use(express.static(__dirname+"/public"));
@@ -31,6 +39,7 @@ let storage=multer.diskStorage({
 		cb(null,file.fieldname+"-"+Date.now()+path.extname(file.originalname));
 	}
 });
+
 //   MULTER FOR STORING THE IMAGES
 let upload=multer(
 {
@@ -45,10 +54,11 @@ app.get("/",function(req,res)
 	res.render("landing");
 
 });
-app.get("/rahnama",function(req,res)
+app.get("/all-properties",function(req,res)
 {
 	res.render("all");
-})
+});
+
 //#########################HOME ROUTES##########################
 app.get("/homes",function(req,res)
 {
@@ -56,7 +66,7 @@ app.get("/homes",function(req,res)
 	{
 		if(err)
 		{
-			res.send("currently no home found! please come back latter");
+			res.send("currently no homes found! please come back latter");
 		}
 		else
 		{
@@ -65,12 +75,12 @@ app.get("/homes",function(req,res)
 		
 	})
 });
-app.get("/homes/new",function(req,res)
+app.get("/homes/new",isLoggedIn,function(req,res)
 {
 	res.render("forms/home");
 })
 
-app.post("/homes/new",(req,res)=>{
+app.post("/homes/new",isLoggedin,(req,res)=>{
 	upload(req,res,(err)=>{
 		if(err)
 		{
@@ -120,7 +130,7 @@ app.get("/homes/:id",(req,res)=>
 	home.findById(req.params.id,(err,foundHome)=>
 	{
 		if (err) {
-			console.log(err)
+			
 			res.send("Oops the home could not be found ")
 		}
 		else
@@ -132,6 +142,7 @@ app.get("/homes/:id",(req,res)=>
 	}) 
 
 });
+
 //#################   SHOPES  ###############
 app.get("/shopes",(req,res)=>
 {
@@ -139,19 +150,18 @@ app.get("/shopes",(req,res)=>
 	shope.find({},function(err,allShopes)
 	{
 		if (err) {
-			console.log(err);
+			res.render("posts/noitems");
 		}
 		else
 		{
 			//send it to the show page
-	        res.render("posts/shope",{allShopes:allShopes});
+			res.render("posts/noitem");
+	        // res.render("posts/shope",{allShopes:allShopes});
 		}
-
 	});
-
-	
 });
-app.get("/shope/:id",function(req,res)
+//          	SHOW ROUTE
+app.get("/shopes/:id",function(req,res)
 {
 	//find the home with the given id
 	shope.findById(req.params.id,function(err,foundShop)
@@ -168,32 +178,77 @@ app.get("/shope/:id",function(req,res)
 	}) 
 
 });
-// show all shops route
-app.get("/office",function(req,res)
+// OFFICE ROUTES#########
+app.get("/offices",function(req,res)
 {
 	//find the offices
 	office.find({},function(err,allOffices)
 	{
             if (err) {
-            	console.log(err)
+                res.render("posts/noitems");
             }
             else
             {
             	// render it to show page
-            	console.log(allOffices)
-	            res.render("posts/office",{allOffices:allOffices});
-
+            	// console.log(allOffices)
+	            // res.render("posts/office",{allOffices:allOffices});
+                 res.render("posts/noitem");
             }
 			
 	})
 
 });
+//   ####      CARE ROUTES
+app.get("/cares",function(req,res)
+{
+	//find the offices
+	Cares.find({},function(err,allCars)
+	{
+            if (err) {
+                res.render("posts/noitem");
+            }
+            else
+            {
+            	// render it to show page
+            	// console.log(allOffices)
+	            // res.render("posts/office",{allOffices:allOffices});
+                 res.render("posts/noitem");
+            }
+			
+	})
+
+});
+//          BIKES ROUTES
+app.get("/bikes",function(req,res)
+{
+	//find the offices
+	Bikes.find({},function(err,allBikes)
+	{
+            if (err) {
+                res.render("posts/noitem");
+            }
+            else
+            {
+            	// render it to show page
+            	// console.log(allOffices)
+	            // res.render("posts/office",{allOffices:allOffices});
+                 res.render("posts/noitem");
+            }
+			
+	})
+
+});
+app.get("/zamin",(req,res)=>{
+	res.render("posts/noitem")
+})
+
 // sending the options to user
-app.get("/options",function(req,res)
+app.get("/options",isLoggedin,function(req,res)
 {
 	res.render("posts/options");
 });
-app.post("/options",function(req,res)
+
+app.post("/options",isLoggedIn,function(req,res)
 {
 	var propertyType=req.body.propertyType;
 	let way="/";
@@ -231,21 +286,57 @@ app.post("/options",function(req,res)
 
 });
 
-
-app.get("/login",function(req,res)
+app.get("/login",(req,res)=>
 {
 	res.render("auth/login");
 });
+app.post("/login",passport.authenticate("local",{
+	successRedirect:"/",
+	failureRedirect:"/login"
+}),(req,res)=>{	
+});
+
 
 app.get("/register",function(req,res)
+{
+  res.render("auth/register");
+});
+//   registration route#####
+app.post("/register",function(req,res)
+{
+	
+	var newUser=new User({username:req.body.username});
+	User.register(newUser,req.body.password,function(err,user)
 	{
-		res.render("auth/register");
+		if(err)
+		{
+
+			console.log(err);
+			return res.render("auth/register");
+		}
+		else
+		{
+			passport.authenticate("local")(req,res,function()
+			{
+				res.redirect("/");
+
+			});
+
+		}
+
 	});
 
+});
 
-
-
-app.listen(3000,function()
+// MIDDLEWARES
+function isLoggedIn(req,res,next)
+{
+	if (req.isAuthenticated()) {
+		return next();
+	}
+	res.redirect("/login");
+}
+app.listen(3000,()=>
 {
 	console.log("server has started.");
 });

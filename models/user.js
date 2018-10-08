@@ -1,5 +1,5 @@
 let mongoose=require('mongoose');
-let localMongoose=require('password-local-mongoose');
+let localMongoose=require('passport-local-mongoose');
 
 
 let userSchema=new mongoose.Schema({
