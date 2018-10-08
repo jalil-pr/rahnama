@@ -14,7 +14,14 @@ var app=express();
 app.use(bodyParser.urlencoded({extended:true}));
 mongoose.connect("mongodb://localhost:27017/rahnama",{useNewUrlParser:true});
 // seedDb();
-
+//        PASSPORT STAFFFF
+app.use(require('express-session')({
+	secret:"Jalil Haidari is the best programmer in the world",
+	resave:false,
+	saveUninitialized:false
+}))
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.set("view engine","ejs");
 app.use(express.static(__dirname+"/public"));
@@ -24,13 +31,14 @@ let storage=multer.diskStorage({
 		cb(null,file.fieldname+"-"+Date.now()+path.extname(file.originalname));
 	}
 });
+//   MULTER FOR STORING THE IMAGES
 let upload=multer(
 {
 	storage:storage
 }).array('images');
 
 
-
+//     INDEX ROUTES
 app.get("/",function(req,res)
 {
 	// res.send("the swaping images here!")
@@ -41,7 +49,7 @@ app.get("/rahnama",function(req,res)
 {
 	res.render("all");
 })
-//#########################home routes##########################
+//#########################HOME ROUTES##########################
 app.get("/homes",function(req,res)
 {
 	home.find({},function(err,homes)
@@ -124,7 +132,25 @@ app.get("/homes/:id",(req,res)=>
 	}) 
 
 });
+//#################   SHOPES  ###############
+app.get("/shopes",(req,res)=>
+{
+	//find all the shopes from database
+	shope.find({},function(err,allShopes)
+	{
+		if (err) {
+			console.log(err);
+		}
+		else
+		{
+			//send it to the show page
+	        res.render("posts/shope",{allShopes:allShopes});
+		}
 
+	});
+
+	
+});
 app.get("/shope/:id",function(req,res)
 {
 	//find the home with the given id
@@ -143,24 +169,6 @@ app.get("/shope/:id",function(req,res)
 
 });
 // show all shops route
-app.get("/shopes",function(req,res)
-{
-	//find all the shopes from database
-	shope.find({},function(err,allShopes)
-	{
-		if (err) {
-			console.log(err);
-		}
-		else
-		{
-			//send it to the show page
-	        res.render("posts/shope",{allShopes:allShopes});
-		}
-
-	});
-
-	
-});
 app.get("/office",function(req,res)
 {
 	//find the offices
@@ -188,14 +196,38 @@ app.get("/options",function(req,res)
 app.post("/options",function(req,res)
 {
 	var propertyType=req.body.propertyType;
-	if(propertyType.trim()==='home')
+	let way="/";
+	switch(propertyType)
 	{
-		res.render("forms/home.ejs");
+		case 'home':
+		 {
+		 	way='forms/home.ejs';
+		 	break;
+
+		 }
+		 case 'shope':
+		 {
+		 	way='forms/shope.ejs';
+		 	break;
+		 }
+		 case 'car':
+		 {
+		 	way='forms/car';
+		 	break;
+		 }
+		 case 'office':
+		 {
+		 	way='forms/office';
+		 	break;
+		 }
+		 case 'bike':
+		 {
+		 	way='forms/bike';
+		 	break;
+		 }
 	}
-	else 
-	{
-		console.log("Oops home has not been selected.")
-	}
+	res.render(way);
+	
 
 });
 
