@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<%include ./partials/header %>
+<%include ../partials/header %>
    <div class="container">
      <div class="row">
        <div class="col-md-3">
@@ -13,19 +13,18 @@
        </div>
        <div class="col-md-9">
           
-              
+              <%homes.forEach(function(home){%>
                  <div class="col-sm-6 col-lg-4">
                     <div class="thumbnail">
-                    <h4 class="pull-right"></h4>
-                    <img >
-                    <div class="text-center"> 
-                       <p>All the properties will come here!</p>
-                       <a class="btn btn-success" href="#">مشخصات</a>
+                    <h4 class="pull-right"><%=home.category%></h4>
+                    <img src="<%=home.image%>">
+                    <div class="text-center">
+                       <a class="btn btn-success" href="/rahnama/home/<%=home._id%>">مشخصات</a>
                     </div>
                     </div>
                   </div>
 
-        
+              <%});%>
 
             
           
@@ -34,4 +33,4 @@
 
      </div>
    </div>
-<%include ./partials/footer %>
+<%include ../partials/footer %>

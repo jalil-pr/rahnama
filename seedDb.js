@@ -4,11 +4,6 @@ var Home               =require("./models/home.js"),
 
 
 
-
-
-
-
-
 var offices=[
 {
 	length:"25 meters",

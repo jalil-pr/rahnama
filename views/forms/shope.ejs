@@ -1,4 +1,79 @@
 <!DOCTYPE html>
-<%include ../partials/header%>
-   <h1>welcome to the shopes</h1>
-<%include ../partials/footer%>
+<%include ../partials/header %>
+
+	<div class="form-center">
+	<h4>مشخصات دکان:</h4>
+
+	  <form action="/shopes/new" method="POST" enctype="multipart/form-data">
+	    <div class="form-group">
+	    
+	        <input class="form-control" type="text" name="shope[length]" placeholder="طول"/>
+	      
+	    </div>
+	    <div class="form-group">
+	    
+	        <input class="form-control" type="text" name="shope[width]" placeholder="عرظ"/>
+	      
+	    </div>
+	    
+	    <!-- category of the property -->
+	    <div class="form-group">
+	    
+	        <input list="categoryـlist" class="form-control" type="text" name="shope[category]" placeholder="برای"/>
+	        <datalist id="categoryـlist">
+	        	<option value="کرایی">
+	        	<option value="گروی">
+	        	<option value="فروشی">
+	        	
+	        </datalist>
+	    </div>
+	    <!-- price -->
+	    <div class="form-group">
+	    
+	        <input class="form-control" type="number" name="shope[price]" placeholder="قیمت"/>
+	      
+	    </div>
+	    <!-- provence -->
+	    <div class="form-group">
+	    
+	        <input list="provence" class="form-control" type="text" name="shope[provence]" placeholder="ولایت">
+	        <datalist id="provence">
+	        	<option value="غزنی">
+	        	<option value="کابل">
+	        	<option value="بلخ">
+	        	<option value="هرات">
+	        	<option value="پروان">
+	        	<option value="قندهار">
+	        </datalist>
+	       
+
+	    </div>
+	    <!-- location field -->
+	    <div class="form-group">  
+	        <input class="form-control" type="text" maxlength="100" name="shope[location]" placeholder="موقعیت و معلومات کوتاه دیگر"/>  
+	    </div>
+	    <div class="form-group">  
+	        <input class="form-control" type="text"
+	            name="shope[floor_number]" placeholder="نمبر منزل"/>  
+	    </div>
+	    
+	    <div class="choose_image_div">
+		    <label for="files" class="btn">انتخاب عکس</label>
+		    <input id="files" name="images"style="visibility:hidden;" type="file" accept="image/x-png,image/gif,image/jpeg"multiple>
+		    <small>لطفا سه عکس انتخاب کنید </small>
+		</div>
+	    <div class="form-group">
+	        <input class="btn btn-success btn_pading" type="submit" value="ادامه"/>
+	    </div>
+
+
+	  </form>
+	  <div class="go back">
+	    <a href="/rahnama/shopes">Go back</a>
+	  </div>
+
+
+	</div>
+
+
+<%include ../partials/footer%> 

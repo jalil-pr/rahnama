@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <%include ../partials/header %>
    <div class="container">
      <div class="row">
@@ -23,14 +23,13 @@
                 <div class="col-lg-6 col-sm-12 col-xs-12">
                   <div class="pull-right"><h4>نوع: &nbsp;   <%=foundShop.category%></h4></div>
                   <div class="text-center"><h4>قیمت: &nbsp;   <%=foundShop.price%></h4></div>   
-                  <div class="pull-right"><h4>نمبر منزل:&nbsp;    <%=foundShop.floor_number%></h4></div>
+                  <div class="pull-right"><h4>نمبر منزل:&nbsp;
 
-                  
-                  <div class="text-center">
-
-                    <h4>ولایت:&nbsp;    <%=foundShop.provence%></h4>
-                  </div>
-                  
+                    <%=foundShop.floor_number%></h4></div>
+                    <div class="text-center">
+                        <h4>ولایت:&nbsp;<%=foundShop.provence%></h4>
+                    </div>
+                    
 
                 </div>
               
@@ -40,19 +39,19 @@
           </header>
           <div class="well">
             <h5 class="pull-right">:عکسها </h5>
-            <div class="row"s>
-              
+
+           <div class="row">
+              <%foundShop.images.forEach((image)=>{%>
                  <div class="col-md-6 col-sm-12">
                    <div class="thumbnail">
-                     
-                     <img src="<%=foundShop.image%>">
-
+                     <img src="/uploads/<%=image%>">
                    </div>
                 
                  </div>
+
+              <%})%>
               
             </div>
-
 
           </div>
        </div>

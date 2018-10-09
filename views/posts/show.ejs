@@ -64,6 +64,18 @@
 
 
           </div>
+          <div class="row">
+
+             <div class="col-md-12">
+                <%foundHome.comments.forEach(function(comment){%>
+                     <span class="pull-right">10 days ago</span>
+                     <strong><%=comment.author%></strong>
+                     <p><%=comment.text %><p>
+                <%});%>
+
+            </div>
+
+          </div>
        </div>
 
 
