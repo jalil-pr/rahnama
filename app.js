@@ -28,6 +28,7 @@ let indexRoutes=require("./routes/index");
 let homeRoutes=require("./routes/homes");
 let shopesRoutes=require("./routes/shopes");
 let carsRoutes=require("./routes/cars");
+let commentRoutes=require("./routes/comments");
 
 
 app.use(passport.initialize());
@@ -61,10 +62,13 @@ let upload=multer(
 app.use("/",indexRoutes);
 app.use("/homes/",homeRoutes);
 app.use("/shopes/",shopesRoutes);
+app.use("/cars/",carsRoutes);
+app.use("/homes/:id/comment/",commentRoutes);
+app.use("/shopes/:id/comment/",commentRoutes);
 
 
 
-//   ####      CARE ROUTES
+//   #### CARE ROUTES
 app.get("/cares",function(req,res)
 {
 	//find the offices

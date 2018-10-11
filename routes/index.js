@@ -66,7 +66,13 @@ router.post("/options",isLoggedIn,function(req,res)
 // AUTHENTICATION ROUTES
 router.get("/login",(req,res)=>
 {
+	if(req.isAuthenticated()){
+		res.redirect("/");
+	}
+	else{
 	res.render("auth/login");
+		
+	}
 });
 router.post("/login",passport.authenticate("local",{
 	successRedirect:"/",

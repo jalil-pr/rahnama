@@ -2,6 +2,10 @@ var express=require("express");
 var passport=require("passport");
 var shope=require("../models/shope");
 var router=express.Router({mergeParams:true});
+let upload=require("../config/dbconfig");
+
+
+
 
 //#################   SHOPES  ###############
 router.get("/",(req,res)=>

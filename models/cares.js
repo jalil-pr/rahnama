@@ -3,7 +3,11 @@ let caresSchema=new mongoose.Schema({
 	model:String,
 	type:String,
 	hand:String,
-	stringHand:String,
+	plate:String,
+	ph_num:Number,
+    price:Number,
+	steering_hand:String,
+	info:String,
 	images:[]
 })
-module.exports=mongoose.model("Cares",caresSchema);
+module.exports=mongoose.model("Cars",caresSchema);

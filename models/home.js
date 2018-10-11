@@ -10,11 +10,14 @@ var homeSchema=new mongoose.Schema({
 	location:String,
 	category:String,
 	price:Number,
+	ph_num:Number,
 	images:[],
-	comments:[{
-		type:mongoose.Schema.Types.ObjectId,
-		ref:"Comments"
-	}]
+	comments:[
+	  {
+		  type:mongoose.Schema.Types.ObjectId,
+		  ref:"Comments"
+	  }
+	]
 	
 });
 module.exports=mongoose.model("Home",homeSchema);

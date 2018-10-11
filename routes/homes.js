@@ -4,23 +4,8 @@ var passport=require("passport");
 var home=require("../models/home");
 var router=express.Router({mergeParams:true});
 var Comment=require("../models/comment");
-let multer=require("multer");
-let path=require("path");
+let upload=require("../config/dbconfig");
 
-
-let storage=multer.diskStorage({
-	destination:'./public/uploads',
-	filename:(req,file,cb)=>{
-		cb(null,file.fieldname+"-"+Date.now()+path.extname(file.originalname));
-	}
-});
-
-
-//   MULTER FOR STORING THE IMAGES
-let upload=multer(
-{
-	storage:storage
-}).array('images');
 //#########################HOME ROUTES##########################
 router.get("/",function(req,res)
 {
@@ -57,11 +42,13 @@ router.post("/new",isLoggedIn,(req,res)=>{
 			var provence=req.body.provence;
 			var loc=req.body.location;
 			var price=req.body.price;
+			var ph_num=req.body.ph_num;
 
 		    var newHome=new home({
 		    	number_of_rooms:nOfRoom,
 				number_of_floors:nOfFloors,
 				floor_number:floorNo,
+				ph_num:ph_num,
 				provence:provence,
 				location:loc,
 				category:category,
@@ -76,25 +63,8 @@ router.post("/new",isLoggedIn,(req,res)=>{
 		    		req.files.forEach((file)=>{
 		    					 createHome.images.push(file.filename);    				       
 		    				})
-		    		};
-		    		Comment.create({
-		    			text:"awesome",
-		    			author:"jalil haidari"
-		    		},(err,createComment)=>{
-		    			if(err)
-		    			{
-		    				console.log(err);
-		    			}
-		    			else
-		    			{
-		    				createHome.comments.push(createComment);
-		    			    createComment.save();
-		    			}
-		    			
-		    		})
+		    		};	
 		    		createHome.save();
-		    	
-		    		
 		    	}
 		     
 

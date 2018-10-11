@@ -5,6 +5,7 @@ var shopeSchema=new mongoose.Schema({
 	width:String,
 	category:String,
 	price:Number,
+	ph_num:Number,
 	location:String,
 	provence:String,
 	floor_number:String,
