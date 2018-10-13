@@ -4,6 +4,8 @@ var passport=require("passport");
 var home=require("../models/home");
 var User       =require("../models/user");
 var router=express.Router({mergeParams:true});
+let isLoggedIn=require("../config/islogedin");
+let Contact=require("../models/contact");
 
 
 
@@ -20,20 +22,30 @@ router.get("/all-properties",function(req,res)
 	{
 		if(err)
 		{
-			res.send("currently no homes found! please come back latter");
+			res.render("noitems");
 		}
 		else
 		{
-			res.render("posts/index",{homes:homes});
+			res.render("homes/index",{homes:homes});
 		}
 		
 	})
 });
+router.post("/contact",(req,res)=>{
+	Contact.create(req.body.contact,(err,createdMessage)=>{
+		if(err)
+		{
+			console.log(err);
+		}
+		res.redirect("/");
+	})
+});
+
 
 // OPTIONS ROUTES
 router.get("/options",isLoggedIn,function(req,res)
 {
-	res.render("posts/options");
+	res.render("auth/options");
 });
 
 router.post("/options",isLoggedIn,function(req,res)
@@ -103,7 +115,6 @@ router.post("/register",function(req,res)
 			passport.authenticate("local")(req,res,function()
 			{
 				res.redirect("/");
-
 			});
 
 		}
@@ -111,13 +122,13 @@ router.post("/register",function(req,res)
 	});
 
 });
-
-// MIDDLEWARES
-function isLoggedIn(req,res,next)
-{
-	if (req.isAuthenticated()) {
-		return next();
-	}
-	res.redirect("/login");
-}
+router.get("/privacy",(req,res)=>{
+	res.render("privacy");
+})
+router.get("/contactus",(req,res)=>{
+	res.render("contactus");
+})
+router.get("/about",(req,res)=>{
+	res.render("about");
+})
 module.exports=router;

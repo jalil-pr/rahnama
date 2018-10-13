@@ -4,10 +4,7 @@
      <div class="row">
        <div class="col-md-3">
          <ul>
-           <li>1</li>
-           <li>2</li>
-           <li>3</li>
-           <li>4</li>
+        
 
          </ul>
        </div>
@@ -23,13 +20,14 @@
          
             </header>
 
-              <%allShopes.forEach(function(shope){%>
+              <%allCars.forEach(function(car){%>
                  <div class="col-sm-6 col-lg-4">
                     <div class="thumbnail">
-                    <h4 class="pull-right"><%=shope.category%></h4>
-                    <img src="/uploads/<%=shope.images[0]%>">
+                    <h4 class="pull-right"><%=car.category%></h4>
+                    <p ><%=car.location%></p>
+                    <img src="/uploads/<%=car.images[0]%>">
                     <div class="text-center">
-                       <a class="btn btn-success" href="/shopes/<%=shope._id%>">مشخصات</a>
+                       <a class="btn btn-success" href="/cars/<%=car._id%>">مشخصات</a>
                     </div>
                     </div>
                   </div>
@@ -42,5 +40,5 @@
 
 
      </div>
-   </div>
+  
 <%include ../partials/footer %>

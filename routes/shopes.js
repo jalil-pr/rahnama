@@ -3,6 +3,7 @@ var passport=require("passport");
 var shope=require("../models/shope");
 var router=express.Router({mergeParams:true});
 let upload=require("../config/dbconfig");
+let isLoggedIn=require("../config/islogedin");
 
 
 
@@ -15,11 +16,11 @@ router.get("/",(req,res)=>
 	shope.find({},(err,allShopes)=>
 	{
 		if (err) {
-			res.render("posts/noitems");
+			res.render("noitems");
 		}
 		else
 		{	
-	      res.render("posts/shope",{allShopes:allShopes});
+	      res.render("shopes/shope",{allShopes:allShopes});
 		}
 	});
 });
@@ -31,11 +32,12 @@ router.get("/:id",function(req,res)
 	{
 		if (err) {
 			console.log(err)
+			res.render("noitems");
 		}
 		else
 		{	
 	        // send it to the show page
-	        res.render("posts/show_shop",{foundShop:foundShop});
+	        res.render("shopes/show_shop",{foundShop:foundShop});
 		}
 	}) 
 });
@@ -75,14 +77,6 @@ router.post("/new",isLoggedIn,(req,res)=>{
 	})
 })
 
-// MIDDLEWARES
-function isLoggedIn(req,res,next)
-{
-	if (req.isAuthenticated()) {
-		return next();
-	}
-	res.redirect("/login");
-}
 
 
 module.exports=router;

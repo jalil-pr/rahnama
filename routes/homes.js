@@ -5,6 +5,7 @@ var home=require("../models/home");
 var router=express.Router({mergeParams:true});
 var Comment=require("../models/comment");
 let upload=require("../config/dbconfig");
+let isLoggedIn=require("../config/islogedin");
 
 //#########################HOME ROUTES##########################
 router.get("/",function(req,res)
@@ -13,11 +14,11 @@ router.get("/",function(req,res)
 	{
 		if(err)
 		{
-			res.send("currently no homes found! please come back latter");
+          res.render("noitems");
 		}
 		else
 		{
-			res.render("posts/index",{homes:homes});
+			res.render("homes/index",{homes:homes});
 		}
 		
 	})
@@ -88,17 +89,9 @@ router.get("/:id",(req,res)=>
 		else
 		{	
 	        // send it to the show page
-	        res.render("posts/show",{foundHome:foundHome});
+	        res.render("homes/show",{foundHome:foundHome});
 		}
 	}) 
 });
 
-// MIDDLEWARES
-function isLoggedIn(req,res,next)
-{
-	if (req.isAuthenticated()) {
-		return next();
-	}
-	res.redirect("/login");
-}
 module.exports=router;

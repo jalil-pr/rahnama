@@ -2,6 +2,7 @@ let express=require("express");
 let router=express.Router({mergeParams:true});
 let upload=require("../config/dbconfig");
 let Cars=require("../models/cares");
+let isLoggedIn=require("../config/islogedin");
 
 router.get("/",(req,res)=>
 {
@@ -10,12 +11,12 @@ router.get("/",(req,res)=>
 	Cars.find({},(err,allCars)=>
 	{
 		if (err) {
-			res.render("posts/noitems");
+			res.render("noitems");
 		}
 		else
 		{	
-			console.log("you hitted the cars route bro you have to pay for it");
-	        res.render("posts/cars",{allCars:allCars});
+		
+	        res.render("cars/cars",{allCars:allCars});
 		}
 	});
 });
@@ -32,14 +33,14 @@ router.post("/new",isLoggedIn,(req,res)=>
 		if(err)
 		{
 			console.log(err);
-			res.render("posts/noitems");
+			res.render("noitems");
 		}
 		else
 		{
 			Cars.create(req.body.car,(err,createCar)=>{
 				if (err) {
 					console.log(err);
-					res.render("posts/noitems");
+					res.render("noitems");
 				}
 				else
 				{
@@ -64,8 +65,8 @@ router.get("/:id",(req,res)=>
 	{
 		if (err) {
 			
-			res.send("Oops the home could not be found ")
 		    console.log(err);
+		    res.render("noitems");
 		}
 		else
 		{	
@@ -74,12 +75,5 @@ router.get("/:id",(req,res)=>
 		}
 	}) 
 });
-// MIDDLEWARES
-function isLoggedIn(req,res,next)
-{
-	if (req.isAuthenticated()) {
-		return next();
-	}
-	res.redirect("/login");
-}
+
 module.exports=router;
