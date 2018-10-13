@@ -17,7 +17,8 @@ let upload=require("./config/dbconfig");
 let isLoggedIn=require("./config/islogedin");
 var app=express();
 app.use(bodyParser.urlencoded({extended:true}));
-mongoose.connect("mongodb://localhost:27017/rahnama",{useNewUrlParser:true});
+//mongodb://jalil:Abdulmatin.1995@ds121311.mlab.com:21311/rahnama
+mongoose.connect("mongodb://jalil:Abdulmatin.1995@ds121311.mlab.com:21311/rahnama",{useNewUrlParser:true});
 //        PASSPORT STAFFFF
 app.use(require('express-session')({
 	secret:"Jalil Haidari is the best programmer in the world",
