@@ -12,7 +12,7 @@ var express          =require("express"),
     multer           =require("multer");
 
 
-
+const PORT = process.env.PORT || 5000;
 let upload=require("./config/dbconfig");
 let isLoggedIn=require("./config/islogedin");
 var app=express();
@@ -40,7 +40,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.set("view engine","ejs");
-app.use(express.static(__dirname+"/public"));
+app.use(express.static(path.join(__dirname, './public')));
 
 app.use(function(req,res,next)
 	{
@@ -54,4 +54,4 @@ app.use("/homes/",homeRoutes);
 app.use("/shopes/",shopesRoutes);
 app.use("/cars/",carsRoutes);
 
-app.listen(process.env.PORT,process.env.IP);
+app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
