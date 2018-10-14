@@ -54,7 +54,4 @@ app.use("/homes/",homeRoutes);
 app.use("/shopes/",shopesRoutes);
 app.use("/cars/",carsRoutes);
 
-app.listen(3000,()=>
-{
-	console.log("server has started.");
-});
+app.listen(process.env.PORT,process.env.IP);
