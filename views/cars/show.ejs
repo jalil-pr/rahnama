@@ -1,71 +1,83 @@
 <!DOCTYPE html>
 <%include ../partials/header %>
-   <div class="container">
-     <div class="row">
-       <div class="col-md-3 similar-items">
-       <h2>:Similar items</h2>
-         <ul>
-          
-         </ul>
-       </div>
-       <div class="col-md-9">
-            <header class="jumbotron">
-              <div class="row">
-               <div class="col-lg-6 col-sm-12">
-                    <div class="pull-right"><h4>بقیه معلومات: &nbsp; </h4>
-                        <p><%=foundCars.info%></p>
-                    </div>
-                  </div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 similar-items">
+      <h2>:Similar items</h2>
+      <ul>
+
+      </ul>
+    </div>
+    <div class="col-md-9">
+      <header class="jumbotron">
+        <div class="row">
+          <div class="col-lg-6 col-sm-12">
+            <div class="pull-right">
+              <h4>بقیه معلومات: &nbsp; </h4>
+              <p><%=foundCars.info%></p>
+            </div>
+          </div>
 
 
-                   <div class="col-lg-6 col-sm-12">
-                   <div class="pull-right"><h4>نوع: &nbsp; </h4>   
-                         <p><%=foundCars.type%></p>
-                    </div>
-                    <div class="text-center"><h4>مودل: &nbsp;</h4>
-                        <p> <%=foundCars.model%></p>
-                    </div>
-                    <div class="pull-right"><h4>دست:&nbsp;</h4>
-                         <p><%=foundCars.hand%></p>
-                    </div>
-                    <div class="text-center"><h4>پلیت: &nbsp;</h4><p><%=foundCars.plate%></p></div>
-                    <div class="pull-right">
-                      <h4>دست شترینگ:&nbsp;</h4><p><%=foundCars.steering_hand%></p>
+          <div class="col-lg-6 col-sm-12">
+            <div class="pull-right">
+              <h4>نوع: &nbsp; </h4>
+              <p><%=foundCars.type%></p>
+            </div>
+            <div class="text-center">
+              <h4>مودل: &nbsp;</h4>
+              <p> <%=foundCars.model%></p>
+            </div>
+            <div class="pull-right">
+              <h4>دست:&nbsp;</h4>
+              <p><%=foundCars.hand%></p>
+            </div>
+            <div class="text-center">
+              <h4>پلیت: &nbsp;</h4>
+              <p><%=foundCars.plate%></p>
+            </div>
+            <div class="pull-right">
+              <h4>دست شترینگ:&nbsp;</h4>
+              <p><%=foundCars.steering_hand%></p>
 
-                    </div>
-                    <div class="text-center">
-                      <h4>قیمت:&nbsp;  </h4><p>  <%=foundCars.price%></p>
+            </div>
+            <div class="text-center">
+              <h4>قیمت:&nbsp; </h4>
+              <p> <%=foundCars.price%></p>
 
-                    </div>
-                     <div class="pull-right"><h4>نمبر تماس:&nbsp;</h4> <p><%=foundCars.ph_num%></p></div>
-                    
-                  </div>
+            </div>
+            <div class="pull-right">
+              <h4>نمبر تماس:&nbsp;</h4>
+              <p><%=foundCars.ph_num%></p>
+            </div>
 
-                 
-                  </div>
-        
-            </header>
-              <div class="well">
-                <h5 class="pull-right">:عکسها </h5>
-                <div class="row">
-                  <%foundCars.images.forEach((image)=>{%>
-                     <div class="col-md-6 col-sm-12">
-                       <div class="thumbnail">
-                         <img src="/uploads/<%=image%>">
-                       </div>
-                    
-                     </div>
-
-                  <%})%>
-                  
-                </div>
+          </div>
 
 
-              </div>
-      
-       </div>
+        </div>
+
+      </header>
+      <div class="well">
+        <h5 class="pull-right">:عکسها </h5>
+        <div class="row">
+          <%foundCars.images.forEach((image)=>{%>
+          <div class="col-md-6 col-sm-12">
+            <div class="thumbnail">
+              <img src="/uploads/<%=image%>">
+            </div>
+
+          </div>
+
+          <%})%>
+
+        </div>
 
 
-     </div>
-  
-<%include ../partials/footer %>
+      </div>
+
+    </div>
+
+
+  </div>
+
+  <%include ../partials/footer %>

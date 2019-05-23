@@ -3,34 +3,34 @@
 
 <div class="container">
 
-	    <header class="jumbotron ind  ">
-	       <h1 >به راهنما خوش امدید</h1>
-	       <div >
-	         <a class="btn btn-primary btn-large"href="/options">ثبت مالکیت جدید</a>
+   <header class="jumbotron ind  ">
+      <h1>به راهنما خوش امدید</h1>
+      <div>
+         <a class="btn btn-primary btn-large" href="/options">ثبت مالکیت جدید</a>
 
-	       </div>
-	 
-	    </header>
+      </div>
 
-	 <div class="row">
-	    <%homes.forEach(function(home){%>
-           <div class="col-sm-6 col-lg-3">
-              <div class="thumbnail">
-              <h4 class="pull-right"><%=home.category%></h4>
-              <p ><%=home.location%></p>
-              <img src="/uploads/<%=home.images[0]%>">
-              <div class="text-center">
-                 <a class="btn btn-success" href="/homes/<%=home._id%>">مشخصات</a>
-              </div>
-              </div>
-           </div>
+   </header>
 
-	    <%});%>
+   <div class="row">
+      <%homes.forEach(function(home){%>
+      <div class="col-sm-6 col-lg-3">
+         <div class="thumbnail">
+            <h4 class="pull-right"><%=home.category%></h4>
+            <p><%=home.location%></p>
+            <img src="/uploads/<%=home.images[0]%>">
+            <div class="text-center">
+               <a class="btn btn-success" href="/homes/<%=home._id%>">مشخصات</a>
+            </div>
+         </div>
+      </div>
 
-			
-	 </div>
-
-	
+      <%});%>
 
 
-<% include ../partials/footer %>
+   </div>
+
+
+
+
+   <% include ../partials/footer %>

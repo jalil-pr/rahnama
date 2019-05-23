@@ -1,125 +1,128 @@
 <!DOCTYPE html>
 <%include ../partials/header %>
 
-	<div class="form-center">
+<div class="form-center">
 	<h4>لطفا مشخصات خانه خود را در زیر درج نمایید.</h4>
 
-	  <form action="/homes/new" method="POST" enctype="multipart/form-data">
-	    <div class="form-group">
-	    
-	        <input list="nums" class="form-control" type="number" name="num_of_rooms" placeholder="تعداد اطاق"/>
-	        <datalist id="nums">
-	           <option value="2">	
-	           <option value="3">	
-	           <option value="4">	
-	           <option value="5">	
-	           <option value="6">	
-	           <option value="7">	
-	           <option value="8">	
-	           <option value="9">	
-	           <option value="10">	
-	           <option value="11">	
-	           <option value="12">	
-	           <option value="13">	
-	           <option value="14">	
-	           <option value="15">	
-	           <option value="16">	
+	<form action="/homes/new" method="POST" enctype="multipart/form-data">
+		<div class="form-group">
 
-	        </datalist>
+			<input list="nums" class="form-control" type="number" name="num_of_rooms" placeholder="تعداد اطاق" />
+			<datalist id="nums">
+				<option value="2">
+				<option value="3">
+				<option value="4">
+				<option value="5">
+				<option value="6">
+				<option value="7">
+				<option value="8">
+				<option value="9">
+				<option value="10">
+				<option value="11">
+				<option value="12">
+				<option value="13">
+				<option value="14">
+				<option value="15">
+				<option value="16">
 
-	    </div>
-	    <div class="form-group">
-	    
-	        <input list="nums" class="form-control" type="number" name="num_of_floors" placeholder="تعداد منزل"/>
-	      
-	    </div>
-	    
-	    <div class="form-group">
-	    
-	        <input list="the_numbers" class="form-control" type="text" name="floor_number" placeholder="منزلی فروشی/کرایی"/>
-	          <datalist id="the_numbers">
-	           <option value="اول">	
-	           <option value="دوم">	
-	           <option value="سوم">	
-	           <option value="چهارم">	
-	           <option value="پنجم">	
-	           <option value="ششم">	
-	           <option value="هفتم">	
-	           <option value="هشتم">	
-	           <option value="نهم">	
-	           <option value="دهم">	
-	           <option value="همه">	
-	           
-	          
-	        </datalist>
-	        
-	       
+			</datalist>
 
-	    </div>
-	    <!-- category of the property -->
-	    <div class="form-group">
-	    
-	        <input list="categoryـlist" class="form-control" type="text" name="category" placeholder="کرایی/گروی؟"/>
-	        <datalist id="categoryـlist">
-	        	<option value="کرایی">
-	        	<option value="گروی">
-	        	<option value="فروشی">
-	        	
-	        </datalist>
-	    </div>
-	    <!-- price -->
-	    <div class="form-group">
-	    
-	        <input class="form-control" type="number" name="price" placeholder="قیمت بر اساس افغانی"/>
-	      
-	    </div>
-	    <!-- provence -->
-	    <div class="form-group">
-	    
-	        <input list="provence" class="form-control" type="text" name="provence" placeholder="ولایت">
-	        <datalist id="provence">
-	        	<option value="غزنی">
-	        	<option value="کابل">
-	        	<option value="بلخ">
-	        	<option value="هرات">
-	        	<option value="پروان">
-	        	<option value="قندهار">
-	        </datalist>
-	       
-
-	    </div>
-	    <!-- location field -->
-	    <div class="form-group">
-	    
-	        <input class="form-control" type="text" maxlength="100" name="location" placeholder="موقعیت و معلومات کوتاه دیگر"/>
-	        
-	  
-	    </div>
-	    <div class="form-group">
-	    
-	        <input class="form-control" type="number" name="ph_num" placeholder="نمبر تماس"/>
-	      
-	    </div>
-	    
-	    <div class="choose_image_div">
-
-		    <label for="files" class="btn">انتخاب عکس</label>
-		    <input id="files" name="images"style="visibility:hidden;" type="file" accept="image/x-png,image/gif,image/jpeg"multiple>
-		    <small>لطفا سه عکس انتخاب کنید </small>
 		</div>
-	    
-	    <div class="form-group">
-	        <input class="btn btn-success btn_pading" type="submit" value="ادامه"/>
-	    </div>
+		<div class="form-group">
+
+			<input list="nums" class="form-control" type="number" name="num_of_floors" placeholder="تعداد منزل" />
+
+		</div>
+
+		<div class="form-group">
+
+			<input list="the_numbers" class="form-control" type="text" name="floor_number"
+				placeholder="منزلی فروشی/کرایی" />
+			<datalist id="the_numbers">
+				<option value="اول">
+				<option value="دوم">
+				<option value="سوم">
+				<option value="چهارم">
+				<option value="پنجم">
+				<option value="ششم">
+				<option value="هفتم">
+				<option value="هشتم">
+				<option value="نهم">
+				<option value="دهم">
+				<option value="همه">
 
 
-	  </form>
-	  <div class="go back">
-	    <a href="/rahnama/home">Go back</a>
-	  </div>
+			</datalist>
 
 
+
+		</div>
+		<!-- category of the property -->
+		<div class="form-group">
+
+			<input list="categoryـlist" class="form-control" type="text" name="category" placeholder="کرایی/گروی؟" />
+			<datalist id="categoryـlist">
+				<option value="کرایی">
+				<option value="گروی">
+				<option value="فروشی">
+
+			</datalist>
+		</div>
+		<!-- price -->
+		<div class="form-group">
+
+			<input class="form-control" type="number" name="price" placeholder="قیمت بر اساس افغانی" />
+
+		</div>
+		<!-- provence -->
+		<div class="form-group">
+
+			<input list="provence" class="form-control" type="text" name="provence" placeholder="ولایت">
+			<datalist id="provence">
+				<option value="غزنی">
+				<option value="کابل">
+				<option value="بلخ">
+				<option value="هرات">
+				<option value="پروان">
+				<option value="قندهار">
+			</datalist>
+
+
+		</div>
+		<!-- location field -->
+		<div class="form-group">
+
+			<input class="form-control" type="text" maxlength="100" name="location"
+				placeholder="موقعیت و معلومات کوتاه دیگر" />
+
+
+		</div>
+		<div class="form-group">
+
+			<input class="form-control" type="number" name="ph_num" placeholder="نمبر تماس" />
+
+		</div>
+
+		<div class="choose_image_div">
+
+			<label for="files" class="btn">انتخاب عکس</label>
+			<input id="files" name="images" style="visibility:hidden;" type="file"
+				accept="image/x-png,image/gif,image/jpeg" multiple>
+			<small>لطفا سه عکس انتخاب کنید </small>
+		</div>
+
+		<div class="form-group">
+			<input class="btn btn-success btn_pading" type="submit" value="ادامه" />
+		</div>
+
+
+	</form>
+	<div class="go back">
+		<a href="/rahnama/home">Go back</a>
 	</div>
 
 
-<%include ../partials/footer%> 
+</div>
+
+
+<%include ../partials/footer%>

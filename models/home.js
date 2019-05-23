@@ -1,23 +1,23 @@
-var mongoose=require("mongoose");
+var mongoose = require("mongoose");
 
 
 
-var homeSchema=new mongoose.Schema({
-	number_of_rooms:Number,
-	number_of_floors:Number,
-	floor_number:String,
-	provence:String,
-	location:String,
-	category:String,
-	price:Number,
-	ph_num:Number,
-	images:[],
-	comments:[
-	  {
-		  type:mongoose.Schema.Types.ObjectId,
-		  ref:"Comments"
-	  }
+var homeSchema = new mongoose.Schema({
+	number_of_rooms: Number,
+	number_of_floors: Number,
+	floor_number: String,
+	provence: String,
+	location: String,
+	category: String,
+	price: Number,
+	ph_num: Number,
+	images: [],
+	comments: [
+		{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "Comments"
+		}
 	]
-	
+
 });
-module.exports=mongoose.model("Home",homeSchema);
+module.exports = mongoose.model("Home", homeSchema);

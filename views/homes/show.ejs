@@ -1,81 +1,91 @@
 <!DOCTYPE html>
 <%include ../partials/header %>
-   <div class="container">
-     <div class="row">
-       <div class="col-md-3 similar-items">
-       <h2>:Similar items</h2>
-         <ul>
-         
-         </ul>
-       </div>
-       <div class="col-md-9">
-          <header class="jumbotron">
-            <div class="row">
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 similar-items">
+      <h2>:Similar items</h2>
+      <ul>
 
-              
-                <div class="col-lg-6 col-sm-12">
-                  <div class="pull-right"><h3>موقعیت: &nbsp; </h3>
-                      <p><%=foundHome.location%></p>
-                  </div>
-                </div>
+      </ul>
+    </div>
+    <div class="col-md-9">
+      <header class="jumbotron">
+        <div class="row">
 
-                <div class="col-lg-6 col-sm-12">
-                  <div class="pull-right"><h4>نوع: &nbsp;   <%=foundHome.category%></h4></div>
 
-                  <div class="text-center"><h4>قیمت: &nbsp;    
-                       <%=foundHome.price%></h4>
-                  </div>
-                  <div class="pull-right"><h4>تعداد اطاق:
-                       <%=foundHome.number_of_rooms%></h4>
-                  </div>
-                  <div class="text-center"><h4>تعداد منزل:
-                       <%=foundHome.number_of_floors%></h4>
-                  </div>
-                  <div class="pull-right"><h4>نمبر منزل:    <%=foundHome.floor_number%></h4></div>
-                  <div class="text-center">
-                    <h4>ولایت:&nbsp;    <%=foundHome.provence%></h4>
+          <div class="col-lg-6 col-sm-12">
+            <div class="pull-right">
+              <h3>موقعیت: &nbsp; </h3>
+              <p><%=foundHome.location%></p>
+            </div>
+          </div>
 
-                  </div>
-                   <div class="pull-right"><h4>نمبر تماس:    <%=foundHome.ph_num%></h4></div>
-                  
+          <div class="col-lg-6 col-sm-12">
+            <div class="pull-right">
+              <h4>نوع: &nbsp; <%=foundHome.category%></h4>
+            </div>
 
-                </div>
-              
+            <div class="text-center">
+              <h4>قیمت: &nbsp;
+                <%=foundHome.price%></h4>
+            </div>
+            <div class="pull-right">
+              <h4>تعداد اطاق:
+                <%=foundHome.number_of_rooms%></h4>
+            </div>
+            <div class="text-center">
+              <h4>تعداد منزل:
+                <%=foundHome.number_of_floors%></h4>
+            </div>
+            <div class="pull-right">
+              <h4>نمبر منزل: <%=foundHome.floor_number%></h4>
+            </div>
+            <div class="text-center">
+              <h4>ولایت:&nbsp; <%=foundHome.provence%></h4>
 
             </div>
-            
-          </header>
-          <div class="well">
-            <h5 class="pull-right">:عکسها </h5>
-            <div class="row">
-              <%foundHome.images.forEach((image)=>{%>
-                 <div class="col-md-6 col-sm-12">
-                   <div class="thumbnail">
-                     <img src="/uploads/<%=image%>">
-                   </div>
-                
-                 </div>
-
-              <%})%>
-              
+            <div class="pull-right">
+              <h4>نمبر تماس: <%=foundHome.ph_num%></h4>
             </div>
 
 
           </div>
-          <div class="row">
 
-             <div class="col-md-12">
-                <%foundHome.comments.forEach(function(comment){%>
-                     <span class="pull-right">10 days ago</span>
-                     <strong><%=comment.author%></strong>
-                     <p><%=comment.text %><p>
-                <%});%>
 
+        </div>
+
+      </header>
+      <div class="well">
+        <h5 class="pull-right">:عکسها </h5>
+        <div class="row">
+          <%foundHome.images.forEach((image)=>{%>
+          <div class="col-md-6 col-sm-12">
+            <div class="thumbnail">
+              <img src="/uploads/<%=image%>">
             </div>
 
           </div>
-       </div>
+
+          <%})%>
+
+        </div>
 
 
-     </div>
-<%include ../partials/footer %>
+      </div>
+      <div class="row">
+
+        <div class="col-md-12">
+          <%foundHome.comments.forEach(function(comment){%>
+          <span class="pull-right">10 days ago</span>
+          <strong><%=comment.author%></strong>
+          <p><%=comment.text %><p>
+              <%});%>
+
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+  <%include ../partials/footer %>

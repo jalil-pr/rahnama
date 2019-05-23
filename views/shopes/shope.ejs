@@ -1,44 +1,44 @@
 <!DOCTYPE html>
 <%include ../partials/header %>
-   <div class="container">
-     <div class="row">
-       <div class="col-md-3">
-         <ul>
-        
-
-         </ul>
-       </div>
-
-       <div class="col-md-9">
-          
-            <header class="jumbotron ind  ">
-               <h1 >به راهنما خوش امدید</h1>
-               <div >
-                 <a class="btn btn-primary btn-large"href="/options">ثبت مالکیت جدید</a>
-
-               </div>
-         
-            </header>
-
-              <%allShopes.forEach(function(shope){%>
-                 <div class="col-sm-6 col-lg-4">
-                    <div class="thumbnail">
-                    <h4 class="pull-right"><%=shope.category%></h4>
-                    <p><%=shope.location%></p>
-                    <img src="/uploads/<%=shope.images[0]%>">
-                    <div class="text-center">
-                       <a class="btn btn-success" href="/shopes/<%=shope._id%>">مشخصات</a>
-                    </div>
-                    </div>
-                  </div>
-
-              <%});%>
-
-            
-          
-       </div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <ul>
 
 
-     </div>
-   
-<%include ../partials/footer %>
+      </ul>
+    </div>
+
+    <div class="col-md-9">
+
+      <header class="jumbotron ind  ">
+        <h1>به راهنما خوش امدید</h1>
+        <div>
+          <a class="btn btn-primary btn-large" href="/options">ثبت مالکیت جدید</a>
+
+        </div>
+
+      </header>
+
+      <%allShopes.forEach(function(shope){%>
+      <div class="col-sm-6 col-lg-4">
+        <div class="thumbnail">
+          <h4 class="pull-right"><%=shope.category%></h4>
+          <p><%=shope.location%></p>
+          <img src="/uploads/<%=shope.images[0]%>">
+          <div class="text-center">
+            <a class="btn btn-success" href="/shopes/<%=shope._id%>">مشخصات</a>
+          </div>
+        </div>
+      </div>
+
+      <%});%>
+
+
+
+    </div>
+
+
+  </div>
+
+  <%include ../partials/footer %>

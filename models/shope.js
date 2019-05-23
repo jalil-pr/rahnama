@@ -1,15 +1,15 @@
-var mongoose=require("mongoose");
+var mongoose = require("mongoose");
 
-var shopeSchema=new mongoose.Schema({
-	length:String,
-	width:String,
-	category:String,
-	price:Number,
-	ph_num:Number,
-	location:String,
-	provence:String,
-	floor_number:String,
-	images:[]
+var shopeSchema = new mongoose.Schema({
+	length: String,
+	width: String,
+	category: String,
+	price: Number,
+	ph_num: Number,
+	location: String,
+	provence: String,
+	floor_number: String,
+	images: []
 })
 
-module.exports=mongoose.model("Shope",shopeSchema);
+module.exports = mongoose.model("Shope", shopeSchema);
